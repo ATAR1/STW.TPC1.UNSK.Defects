@@ -56,6 +56,8 @@
       <HintPath>..\packages\System.Data.SQLite.EF6.1.0.108.0\lib\net451\System.Data.SQLite.EF6.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -106,16 +108,65 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DbModel\DefectDbModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DefectDbModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\DefectDbModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DefectDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\DefectDbModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DefectDbModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\MDT6TubeInfo.cs">
+      <DependentUpon>DefectDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\TubeInfo.cs">
+      <DependentUpon>DefectDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LoadDataCommand.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="MDT6DbModel\MDT6DBModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MDT6DBModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MDT6DbModel\MDT6DBModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MDT6DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MDT6DbModel\MDT6DBModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MDT6DBModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="MDT6DbModel\Melt.cs">
+      <DependentUpon>MDT6DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MDT6DbModel\Standart.cs">
+      <DependentUpon>MDT6DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MDT6DbModel\Tube.cs">
+      <DependentUpon>MDT6DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MDT6DbModel\Typesize.cs">
+      <DependentUpon>MDT6DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\DateRange.cs" />
     <Compile Include="Model\DefectoscopeFilter.cs" />
     <Compile Include="Model\MeltFilter.cs" />
-    <Compile Include="Model\TubeInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -133,6 +184,20 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="DbModel\DefectDbModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DefectDbModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DbModel\DefectDbModel.edmx.diagram">
+      <DependentUpon>DefectDbModel.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="MDT6DbModel\MDT6DBModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MDT6DBModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="MDT6DbModel\MDT6DBModel.edmx.diagram">
+      <DependentUpon>MDT6DBModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -142,6 +207,31 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DbModel\DefectDbModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DefectDbModel.edmx</DependentUpon>
+      <LastGenOutput>DefectDbModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DbModel\DefectDbModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DefectDbModel.edmx</DependentUpon>
+      <LastGenOutput>DefectDbModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="MDT6DbModel\MDT6DBModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MDT6DBModel.edmx</DependentUpon>
+      <LastGenOutput>MDT6DBModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="MDT6DbModel\MDT6DBModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MDT6DBModel.edmx</DependentUpon>
+      <LastGenOutput>MDT6DBModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.108.0\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.108.0\build\net451\System.Data.SQLite.Core.targets')" />

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:STW.TPC1.UNSK.Defects"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="STW.TPC1.UNSK.Defects.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Foreground="Orange" d:DesignWidth="863.2" d:DesignHeight="726.333">
+        Title="ИС НСК" Foreground="Orange" d:DesignWidth="863.2" d:DesignHeight="726.333">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="160"/>
@@ -19,10 +19,11 @@
         </Grid.RowDefinitions>
         <Menu Grid.ColumnSpan="2">
             <MenuItem Header="Отчёты"/>
+            <MenuItem Header="Загрузить данные" Command="{Binding LoadDataCommand}"/>
         </Menu>
         <Label Content="Фильтры:" Grid.Row="1"/>
+        <Label Content="Проконтроллированные трубы" Grid.Column="1" Grid.Row="1"/>
         <StackPanel Grid.Row="2">
-
             <Expander x:Name="expander" Header="Дата" VerticalAlignment="Top" BorderBrush="Black" IsExpanded="True" Margin="1">
                 <StackPanel Grid.IsSharedSizeScope="True">
                     <TextBlock><Run Text="За период"/></TextBlock>
@@ -47,7 +48,7 @@
             <Expander Header="Дефектоскоп" BorderBrush="Black" IsExpanded="True" Margin="1">
                 <Grid>
                     <TreeView BorderThickness="0" Grid.IsSharedSizeScope="True">
-                        <TreeViewItem Header="ТО 1" IsSelected="True" IsEnabled="False" IsExpanded="True">
+                        <TreeViewItem Header="ТО 1" IsSelected="True" IsExpanded="True">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition SharedSizeGroup="Caption" Width="*"/>
@@ -73,7 +74,7 @@
                                 <CheckBox Grid.Column="1"/>
                             </Grid>
                         </TreeViewItem>
-                        <TreeViewItem Header="ТО 2" IsSelected="True" IsExpanded="True" IsEnabled="False">
+                        <TreeViewItem Header="ТО 2" IsSelected="True" IsExpanded="True">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition SharedSizeGroup="Caption"/>
@@ -91,7 +92,7 @@
                                 <CheckBox Grid.Column="1"/>
                             </Grid>
                         </TreeViewItem>
-                        <TreeViewItem Header="УОГТ" IsSelected="True" IsExpanded="True" IsEnabled="False">
+                        <TreeViewItem Header="УОГТ" IsSelected="True" IsExpanded="True" >
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition SharedSizeGroup="Caption"/>
@@ -114,9 +115,24 @@
             </Expander>
             <Expander Header="Плавка" BorderBrush="Black" IsExpanded="True" Margin="1">
                 <ListBox BorderThickness="0">
-                    <ListBoxItem Content="1234"/>
-                    <ListBoxItem Content="1234"/>
-                    <ListBoxItem Content="1234"/>
+                    <ListBoxItem >
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="2468"/>
+                            <CheckBox VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ListBoxItem>
+                    <ListBoxItem >
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="2467"/>
+                            <CheckBox VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ListBoxItem>
+                    <ListBoxItem >
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="2469"/>
+                            <CheckBox VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ListBoxItem>
                 </ListBox>
             </Expander>
             <Expander Header="Сортамент" BorderBrush="Black" IsExpanded="True" Margin="1">
@@ -148,16 +164,18 @@
             </Expander>
             <Button Content="Показать" Margin="10,3"/>
         </StackPanel>
-        <ListView x:Name="dataGrid" Margin="3" Grid.Row="2" Grid.Column="1">
+        <ListView x:Name="dataGrid" Margin="3" Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Tubes}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Дата"/>
-                    <GridViewColumn Header="Плавка"/>
-                    <GridViewColumn Header="№ трубы"/>
-                    <GridViewColumn Header="Диаметр"/>
-                    <GridViewColumn Header="Стенка"/>
-                    <GridViewColumn Header="Стандарт"/>
-                    <GridViewColumn Header="Дефекты"/>
+                    <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Date}"/>
+                    <GridViewColumn Header="Участок" DisplayMemberBinding="{Binding WorkArea}"/>
+                    <GridViewColumn Header="Деф-п" DisplayMemberBinding="{Binding Defectoscope}"/>
+                    <GridViewColumn Header="Плавка" DisplayMemberBinding="{Binding Melt}"/>
+                    <GridViewColumn Header="№ трубы" DisplayMemberBinding="{Binding TubeNum}"/>
+                    <GridViewColumn Header="Диаметр" DisplayMemberBinding="{Binding Diameter}"/>
+                    <GridViewColumn Header="Стенка" DisplayMemberBinding="{Binding Thickness}"/>
+                    <GridViewColumn Header="Стандарт" DisplayMemberBinding="{Binding Standart}"/>
+                    <GridViewColumn Header="Дефекты" DisplayMemberBinding="{Binding DefectMap}"/>
                 </GridView>
             </ListView.View>
         </ListView>

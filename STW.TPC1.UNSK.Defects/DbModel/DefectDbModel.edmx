@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище DefectsDbModel" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=C:\Users\EpaneshnikovSA\Source\Repos\STW.TPC1.UNSK.Defects\BD\Defects.sqlite" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="MDTDefectMap">
+          <Key>
+            <PropertyRef Name="TubeId" />
+          </Key>
+          <Property Name="TubeId" Type="integer" Nullable="false" />
+          <Property Name="DefectMap" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TubeInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="WorkArea" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Defectoscope" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Melt" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TubeNum" Type="integer" Nullable="false" />
+          <Property Name="Level" Type="int" Nullable="false" />
+          <Property Name="Diameter" Type="real" Nullable="false" />
+          <Property Name="Thickness" Type="real" Nullable="false" />
+          <Property Name="Standart" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_MDTDefectMap_0_0">
+          <End Role="TubeInfo" Type="Self.TubeInfo" Multiplicity="1" />
+          <End Role="MDTDefectMap" Type="Self.MDTDefectMap" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TubeInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MDTDefectMap">
+              <PropertyRef Name="TubeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище DefectsDbModelContainer">
+          <EntitySet Name="MDTDefectMap" EntityType="Self.MDTDefectMap" store:Type="Tables" />
+          <EntitySet Name="TubeInfo" EntityType="Self.TubeInfo" store:Type="Tables" />
+          <AssociationSet Name="FK_MDTDefectMap_0_0" Association="Self.FK_MDTDefectMap_0_0">
+            <End Role="TubeInfo" EntitySet="TubeInfo" />
+            <End Role="MDTDefectMap" EntitySet="MDTDefectMap" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DefectsDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TubeInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="WorkArea" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Defectoscope" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Melt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TubeNum" Type="Int64" Nullable="false" />
+          <Property Name="Level" Type="Int32" Nullable="false" />
+          <Property Name="Diameter" Type="Double" Nullable="false" />
+          <Property Name="Thickness" Type="Double" Nullable="false" />
+          <Property Name="Standart" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="DefectsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TubeInfo" EntityType="Self.TubeInfo" />
+        </EntityContainer>
+        <EntityType Name="MDT6TubeInfo" BaseType="DefectsDbModel.TubeInfo" >
+          <Property Name="DefectMap" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DefectsDbModelContainer" CdmEntityContainer="DefectsEntities">
+          <EntitySetMapping Name="TubeInfo">
+            <EntityTypeMapping TypeName="IsTypeOf(DefectsDbModel.TubeInfo)">
+              <MappingFragment StoreEntitySet="TubeInfo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Standart" ColumnName="Standart" />
+                <ScalarProperty Name="Thickness" ColumnName="Thickness" />
+                <ScalarProperty Name="Diameter" ColumnName="Diameter" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="TubeNum" ColumnName="TubeNum" />
+                <ScalarProperty Name="Melt" ColumnName="Melt" />
+                <ScalarProperty Name="Defectoscope" ColumnName="Defectoscope" />
+                <ScalarProperty Name="WorkArea" ColumnName="WorkArea" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(DefectsDbModel.MDT6TubeInfo)">
+              <MappingFragment StoreEntitySet="MDTDefectMap">
+                <ScalarProperty Name="Id" ColumnName="TubeId" />
+                <ScalarProperty Name="DefectMap" ColumnName="DefectMap" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
