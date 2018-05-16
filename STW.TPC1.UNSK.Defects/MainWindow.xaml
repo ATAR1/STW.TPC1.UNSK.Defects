@@ -6,18 +6,22 @@
         xmlns:local="clr-namespace:STW.TPC1.UNSK.Defects"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="STW.TPC1.UNSK.Defects.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Foreground="Orange">
+        Title="MainWindow" Foreground="Orange" d:DesignWidth="863.2" d:DesignHeight="726.333">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="126"/>
+            <ColumnDefinition Width="160"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Content="Фильтры:"/>
-        <StackPanel Grid.Row="1">
+        <Menu Grid.ColumnSpan="2">
+            <MenuItem Header="Отчёты"/>
+        </Menu>
+        <Label Content="Фильтры:" Grid.Row="1"/>
+        <StackPanel Grid.Row="2">
 
             <Expander x:Name="expander" Header="Дата" VerticalAlignment="Top" BorderBrush="Black" IsExpanded="True" Margin="1">
                 <StackPanel Grid.IsSharedSizeScope="True">
@@ -144,6 +148,18 @@
             </Expander>
             <Button Content="Показать" Margin="10,3"/>
         </StackPanel>
-        <DataGrid x:Name="dataGrid" Margin="3" Grid.Row="1" Grid.Column="1"/>
+        <ListView x:Name="dataGrid" Margin="3" Grid.Row="2" Grid.Column="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Дата"/>
+                    <GridViewColumn Header="Плавка"/>
+                    <GridViewColumn Header="№ трубы"/>
+                    <GridViewColumn Header="Диаметр"/>
+                    <GridViewColumn Header="Стенка"/>
+                    <GridViewColumn Header="Стандарт"/>
+                    <GridViewColumn Header="Дефекты"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>

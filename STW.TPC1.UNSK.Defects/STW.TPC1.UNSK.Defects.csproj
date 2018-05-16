@@ -112,6 +112,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\DateRange.cs" />
+    <Compile Include="Model\DefectoscopeFilter.cs" />
+    <Compile Include="Model\MeltFilter.cs" />
+    <Compile Include="Model\TubeInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
