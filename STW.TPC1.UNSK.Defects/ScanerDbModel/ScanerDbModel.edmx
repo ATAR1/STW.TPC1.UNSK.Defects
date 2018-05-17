@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище ScanerDbModel" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=&quot;d:\#Documents\Visual Studio 2015\Projects\ScanerDirectoryReader\ScanerReaderCUI\ScanerTubeInfo.sqlite&quot;" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Defects">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TubeId" Type="integer" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Value" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScanerTubeInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Melt" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TubeNum" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TubeStatus" Type="integer" Nullable="false" />
+          <Property Name="TypeSize" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Standart" Type="nvarchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Defects_0_0">
+          <End Role="ScanerTubeInfo" Type="Self.ScanerTubeInfo" Multiplicity="1" />
+          <End Role="Defects" Type="Self.Defects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScanerTubeInfo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Defects">
+              <PropertyRef Name="TubeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ScanerDbModelContainer">
+          <EntitySet Name="Defects" EntityType="Self.Defects" store:Type="Tables" />
+          <EntitySet Name="ScanerTubeInfo" EntityType="Self.ScanerTubeInfo" store:Type="Tables" />
+          <AssociationSet Name="FK_Defects_0_0" Association="Self.FK_Defects_0_0">
+            <End Role="ScanerTubeInfo" EntitySet="ScanerTubeInfo" />
+            <End Role="Defects" EntitySet="Defects" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ScanerDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Defect">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TubeId" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScanerTubeInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Melt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TubeNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TubeStatus" Type="Int64" Nullable="false" />
+          <Property Name="TypeSize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Standart" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Defects" Relationship="Self.FK_Defects_0_0" FromRole="ScanerTubeInfo" ToRole="Defects" />
+        </EntityType>
+        <Association Name="FK_Defects_0_0">
+          <End Role="ScanerTubeInfo" Type="Self.ScanerTubeInfo" Multiplicity="1" />
+          <End Role="Defects" Type="Self.Defect" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScanerTubeInfo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Defects">
+              <PropertyRef Name="TubeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ScanerTubeInfoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Defects" EntityType="Self.Defect" />
+          <EntitySet Name="ScanerTubeInfoes" EntityType="Self.ScanerTubeInfo" />
+          <AssociationSet Name="FK_Defects_0_0" Association="Self.FK_Defects_0_0">
+            <End Role="ScanerTubeInfo" EntitySet="ScanerTubeInfoes" />
+            <End Role="Defects" EntitySet="Defects" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ScanerDbModelContainer" CdmEntityContainer="ScanerTubeInfoEntities">
+          <EntitySetMapping Name="Defects">
+            <EntityTypeMapping TypeName="ScanerDbModel.Defect">
+              <MappingFragment StoreEntitySet="Defects">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TubeId" ColumnName="TubeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScanerTubeInfoes">
+            <EntityTypeMapping TypeName="ScanerDbModel.ScanerTubeInfo">
+              <MappingFragment StoreEntitySet="ScanerTubeInfo">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Melt" ColumnName="Melt" />
+                <ScalarProperty Name="TubeNum" ColumnName="TubeNum" />
+                <ScalarProperty Name="TubeStatus" ColumnName="TubeStatus" />
+                <ScalarProperty Name="TypeSize" ColumnName="TypeSize" />
+                <ScalarProperty Name="Standart" ColumnName="Standart" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

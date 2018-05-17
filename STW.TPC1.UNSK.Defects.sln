@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BD", "BD", "{62539E63-24D2-47DE-B97F-ED02158D1F48}"
 	ProjectSection(SolutionItems) = preProject
 		BD\Defects.sqlite = BD\Defects.sqlite
+		BD\ScanerTubeInfo.sqlite = BD\ScanerTubeInfo.sqlite
 	EndProjectSection
 EndProject
 Global

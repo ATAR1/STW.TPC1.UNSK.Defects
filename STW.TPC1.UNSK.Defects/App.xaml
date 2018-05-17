@@ -4,6 +4,16 @@
              xmlns:local="clr-namespace:STW.TPC1.UNSK.Defects"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="WhiteFont" TargetType="{x:Type Label}">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style x:Key="OrangeBackground" TargetType="{x:Type Grid}">
+            <Setter Property="Background" Value="Orange"/>
+            <Setter Property="Margin" Value="1"/>
+        </Style>
+        <Style  TargetType="{x:Type Expander}">
+            <Setter Property="BorderBrush" Value="Orange"/>
+        </Style>
     </Application.Resources>
 </Application>

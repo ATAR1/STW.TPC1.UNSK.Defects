@@ -100,6 +100,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DbModel\ScanerTubeInfo.cs">
+      <DependentUpon>DefectDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ScanerDbModel\Defect.cs">
+      <DependentUpon>ScanerDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ScanerDbModel\ScanerDbModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScanerDbModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ScanerDbModel\ScanerDbModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScanerDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ScanerDbModel\ScanerDbModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScanerDbModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ScanerDbModel\ScanerTubeInfo.cs">
+      <DependentUpon>ScanerDbModel.tt</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -204,6 +228,13 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <EntityDeploy Include="ScanerDbModel\ScanerDbModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ScanerDbModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ScanerDbModel\ScanerDbModel.edmx.diagram">
+      <DependentUpon>ScanerDbModel.edmx</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -228,6 +259,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MDT6DBModel.edmx</DependentUpon>
       <LastGenOutput>MDT6DBModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="ScanerDbModel\ScanerDbModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ScanerDbModel.edmx</DependentUpon>
+      <LastGenOutput>ScanerDbModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ScanerDbModel\ScanerDbModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ScanerDbModel.edmx</DependentUpon>
+      <LastGenOutput>ScanerDbModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

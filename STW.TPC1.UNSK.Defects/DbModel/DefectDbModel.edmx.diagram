@@ -8,6 +8,8 @@
         <EntityTypeShape EntityType="DefectsDbModel.TubeInfo" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DefectsDbModel.MDT6TubeInfo" Width="1.5" PointX="2.625" PointY="4.5" />
         <InheritanceConnector EntityType="DefectsDbModel.MDT6TubeInfo" />
+        <EntityTypeShape EntityType="DefectsDbModel.ScanerTubeInfo" Width="1.5" PointX="0.5" PointY="4.5" />
+        <InheritanceConnector EntityType="DefectsDbModel.ScanerTubeInfo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

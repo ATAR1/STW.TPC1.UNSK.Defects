@@ -6,25 +6,31 @@
         xmlns:local="clr-namespace:STW.TPC1.UNSK.Defects"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="STW.TPC1.UNSK.Defects.MainWindow"
         mc:Ignorable="d"
-        Title="ИС НСК" Foreground="Orange" d:DesignWidth="863.2" d:DesignHeight="726.333">
+        Title="ИС НСК" d:DesignWidth="863.2" d:DesignHeight="726.333">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="160"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="688*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Menu Grid.ColumnSpan="2">
+        <Menu Grid.ColumnSpan="3">
             <MenuItem Header="Отчёты"/>
             <MenuItem Header="Загрузить данные" Command="{Binding LoadDataCommand}"/>
         </Menu>
-        <Label Content="Фильтры:" Grid.Row="1"/>
-        <Label Content="Проконтроллированные трубы" Grid.Column="1" Grid.Row="1"/>
+        <Grid  Grid.Row="1" Style="{StaticResource OrangeBackground}">
+            <Label Content="Фильтры:" Style="{StaticResource WhiteFont}"/>
+        </Grid>
+        <Grid Grid.Column="2" Grid.Row="1" Style="{StaticResource OrangeBackground}">
+            <Label Content="Проконтроллированные трубы" Style="{StaticResource WhiteFont}" />
+        </Grid>
+
         <StackPanel Grid.Row="2">
-            <Expander x:Name="expander" Header="Дата" VerticalAlignment="Top" BorderBrush="Black" IsExpanded="True" Margin="1">
+            <Expander x:Name="expander" Header="Дата" VerticalAlignment="Top" IsExpanded="True" Margin="1">
                 <StackPanel Grid.IsSharedSizeScope="True">
                     <TextBlock><Run Text="За период"/></TextBlock>
                     <Grid >
@@ -45,7 +51,7 @@
                     </Grid>
                 </StackPanel>
             </Expander>
-            <Expander Header="Дефектоскоп" BorderBrush="Black" IsExpanded="True" Margin="1">
+            <Expander Header="Дефектоскоп" IsExpanded="True" Margin="1">
                 <Grid>
                     <TreeView BorderThickness="0" Grid.IsSharedSizeScope="True">
                         <TreeViewItem Header="ТО 1" IsSelected="True" IsExpanded="True">
@@ -113,7 +119,7 @@
                     </TreeView>
                 </Grid>
             </Expander>
-            <Expander Header="Плавка" BorderBrush="Black" IsExpanded="True" Margin="1">
+            <Expander Header="Плавка" IsExpanded="True" Margin="1">
                 <ListBox BorderThickness="0">
                     <ListBoxItem >
                         <StackPanel Orientation="Horizontal">
@@ -135,7 +141,7 @@
                     </ListBoxItem>
                 </ListBox>
             </Expander>
-            <Expander Header="Сортамент" BorderBrush="Black" IsExpanded="True" Margin="1">
+            <Expander Header="Сортамент" IsExpanded="True" Margin="1">
                 <StackPanel>
                     <Label Content="Диаметр"/>
                     <xctk:RangeSlider Maximum="100" HigherValue="100"/>
@@ -159,12 +165,13 @@
                     </Grid>
                 </StackPanel>
             </Expander>
-            <Expander Header="Стандарт" BorderBrush="Black" IsExpanded="True" Margin="1">
+            <Expander Header="Стандарт"  IsExpanded="True" Margin="1">
                 <TextBox Margin="5"/>
             </Expander>
             <Button Content="Показать" Margin="10,3"/>
         </StackPanel>
-        <ListView x:Name="dataGrid" Margin="3" Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Tubes}">
+        <Grid Grid.Row="2" Width="5" Grid.Column="1" Background="Gray" Margin="2,5,0,15" />
+        <ListView x:Name="dataGrid" Margin="3" Grid.Row="2" Grid.Column="2" ItemsSource="{Binding Tubes}" BorderBrush="Orange" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Date}"/>

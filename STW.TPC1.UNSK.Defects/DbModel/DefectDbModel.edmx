@@ -12,6 +12,13 @@
           <Property Name="TubeId" Type="integer" Nullable="false" />
           <Property Name="DefectMap" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="ScanerDefectMap">
+          <Key>
+            <PropertyRef Name="TubeId" />
+          </Key>
+          <Property Name="TubeId" Type="integer" Nullable="false" />
+          <Property Name="DefectMap" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="TubeInfo">
           <Key>
             <PropertyRef Name="Id" />
@@ -39,12 +46,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ScanerDefectMap_0_0">
+          <End Role="TubeInfo" Type="Self.TubeInfo" Multiplicity="1" />
+          <End Role="ScanerDefectMap" Type="Self.ScanerDefectMap" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TubeInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ScanerDefectMap">
+              <PropertyRef Name="TubeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище DefectsDbModelContainer">
           <EntitySet Name="MDTDefectMap" EntityType="Self.MDTDefectMap" store:Type="Tables" />
+          <EntitySet Name="ScanerDefectMap" EntityType="Self.ScanerDefectMap" store:Type="Tables" />
           <EntitySet Name="TubeInfo" EntityType="Self.TubeInfo" store:Type="Tables" />
           <AssociationSet Name="FK_MDTDefectMap_0_0" Association="Self.FK_MDTDefectMap_0_0">
             <End Role="TubeInfo" EntitySet="TubeInfo" />
             <End Role="MDTDefectMap" EntitySet="MDTDefectMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScanerDefectMap_0_0" Association="Self.FK_ScanerDefectMap_0_0">
+            <End Role="TubeInfo" EntitySet="TubeInfo" />
+            <End Role="ScanerDefectMap" EntitySet="ScanerDefectMap" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -72,6 +96,9 @@
         <EntityType Name="MDT6TubeInfo" BaseType="DefectsDbModel.TubeInfo" >
           <Property Name="DefectMap" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="ScanerTubeInfo" BaseType="DefectsDbModel.TubeInfo" >
+          <Property Name="DefectMap" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -97,6 +124,12 @@
               <MappingFragment StoreEntitySet="MDTDefectMap">
                 <ScalarProperty Name="Id" ColumnName="TubeId" />
                 <ScalarProperty Name="DefectMap" ColumnName="DefectMap" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(DefectsDbModel.ScanerTubeInfo)">
+              <MappingFragment StoreEntitySet="ScanerDefectMap" >
+                <ScalarProperty Name="DefectMap" ColumnName="DefectMap" />
+                <ScalarProperty Name="Id" ColumnName="TubeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
