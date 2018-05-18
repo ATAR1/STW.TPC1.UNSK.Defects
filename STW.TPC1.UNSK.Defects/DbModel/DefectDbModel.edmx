@@ -10,20 +10,20 @@
             <PropertyRef Name="TubeId" />
           </Key>
           <Property Name="TubeId" Type="integer" Nullable="false" />
-          <Property Name="DefectMap" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DefectMap" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="ScanerDefectMap">
           <Key>
             <PropertyRef Name="TubeId" />
           </Key>
           <Property Name="TubeId" Type="integer" Nullable="false" />
-          <Property Name="DefectMap" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DefectMap" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="TubeInfo">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="integer" Nullable="false" />
+          <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="WorkArea" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Defectoscope" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -79,7 +79,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Date" Type="DateTime" Nullable="false" />
           <Property Name="WorkArea" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Defectoscope" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
@@ -94,10 +94,10 @@
           <EntitySet Name="TubeInfo" EntityType="Self.TubeInfo" />
         </EntityContainer>
         <EntityType Name="MDT6TubeInfo" BaseType="DefectsDbModel.TubeInfo" >
-          <Property Name="DefectMap" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DefectMap" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ScanerTubeInfo" BaseType="DefectsDbModel.TubeInfo" >
-          <Property Name="DefectMap" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DefectMap" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>

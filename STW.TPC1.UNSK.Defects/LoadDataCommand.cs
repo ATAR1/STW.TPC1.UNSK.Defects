@@ -30,13 +30,14 @@ namespace STW.TPC1.UNSK.Defects
             _mainWindowViewModel.Tubes.Clear();
             using (var mdt6Context = new MDT6DBEntities())
             {
-                tubes.AddRange( mdt6Context.Tubes.Include("Melt.Standart").Include("Melt.Typesize").OrderByDescending(ti => ti.tCreatedDate).Take(2000).ToList()
-                    .Select(ti => {
-                        var typeSizeString = ti.Melt.Typesize.AsString.Replace(" ","").Replace('x', '*').Replace('х', '*').Replace('.', ',');
+                tubes.AddRange(mdt6Context.Tubes.Include("Melt.Standart").Include("Melt.Typesize").OrderByDescending(ti => ti.tCreatedDate).Take(2000).ToList()
+                    .Select(ti =>
+                    {
+                        var typeSizeString = ti.Melt.Typesize.AsString.Replace(" ", "").Replace('x', '*').Replace('х', '*').Replace('.', ',');
                         var diameterString = typeSizeString.Substring(0, typeSizeString.IndexOf('*'));
                         var thicknessString = typeSizeString.Substring(typeSizeString.IndexOf('*') + 1);
-                        double diameter=-1;
-                        double thickness=-1;
+                        double diameter = -1;
+                        double thickness = -1;
                         Double.TryParse(diameterString, out diameter);
                         Double.TryParse(thicknessString, out thickness);
                         return new MDT6TubeInfo()
@@ -44,7 +45,7 @@ namespace STW.TPC1.UNSK.Defects
                             Date = ti.tCreatedDate,
                             Defectoscope = "МДТ 6",
                             Melt = ti.Melt.melt,
-                            Diameter =diameter ,
+                            Diameter = diameter,
                             Thickness = thickness,
                             Level = -1,
                             TubeNum = ti.num_tube_melt,
@@ -53,7 +54,7 @@ namespace STW.TPC1.UNSK.Defects
                             DefectMap = ti.s_map_defects
                         };
                     }));
-               
+
 
             }
 
@@ -91,6 +92,12 @@ namespace STW.TPC1.UNSK.Defects
             foreach (var tube in tubes)
             {
                 _mainWindowViewModel.Tubes.Add(tube);
+            }
+
+            using (var defectContext = new DefectsEntities())
+            {
+                defectContext.TubeInfo.AddRange(tubes);
+                defectContext.SaveChanges();
             }
         }
         
