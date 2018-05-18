@@ -10,11 +10,11 @@ namespace STW.TPC1.UNSK.Defects
 {
     public class LoadDataCommand : ICommand
     {
-        private MainWindowViewModel _mainWindowViewModel;
+        private ICollection<TubeInfo> _tubesCollection;
 
-        public LoadDataCommand(MainWindowViewModel mainWindowViewModel)
+        public LoadDataCommand(ICollection<TubeInfo> tubesCollection)
         {
-            this._mainWindowViewModel = mainWindowViewModel;
+            this._tubesCollection = tubesCollection;
         }
 
         public event EventHandler CanExecuteChanged;
@@ -27,7 +27,6 @@ namespace STW.TPC1.UNSK.Defects
         public void Execute(object parameter)
         {
             var tubes = new List<TubeInfo>();
-            _mainWindowViewModel.Tubes.Clear();
             using (var mdt6Context = new MDT6DBEntities())
             {
                 tubes.AddRange(mdt6Context.Tubes.Include("Melt.Standart").Include("Melt.Typesize").OrderByDescending(ti => ti.tCreatedDate).Take(2000).ToList()
@@ -88,17 +87,13 @@ namespace STW.TPC1.UNSK.Defects
                     }));
 
             }
-
+            _tubesCollection.Clear();
             foreach (var tube in tubes)
             {
-                _mainWindowViewModel.Tubes.Add(tube);
+                _tubesCollection.Add(tube);
             }
 
-            using (var defectContext = new DefectsEntities())
-            {
-                defectContext.TubeInfo.AddRange(tubes);
-                defectContext.SaveChanges();
-            }
+            
         }
         
     }

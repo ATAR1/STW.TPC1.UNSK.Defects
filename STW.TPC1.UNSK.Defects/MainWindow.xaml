@@ -19,8 +19,13 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Menu Grid.ColumnSpan="3">
-            <MenuItem Header="Отчёты"/>
-            <MenuItem Header="Загрузить данные" Command="{Binding LoadDataCommand}"/>
+            <MenuItem Header="Отчёты" Command="{Binding ShowReportCommand}"/>
+            <MenuItem Header="Данные">
+                <MenuItem Header="Загрузить данные из локальной БД" Command="{Binding LoadLocalDataCommand}"/>
+                <MenuItem Header="Загрузить данные" Command="{Binding LoadDataCommand}"/>
+                <Separator/>
+                <MenuItem Header="Сохранить данные в локальную БД" Command="{Binding SaveDataCommand}"/>
+            </MenuItem>
         </Menu>
         <Grid  Grid.Row="1" Style="{StaticResource OrangeBackground}">
             <Label Content="Фильтры:" Style="{StaticResource WhiteFont}"/>

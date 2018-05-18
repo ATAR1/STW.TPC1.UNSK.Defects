@@ -1,0 +1,58 @@
+﻿<Window x:Class="STW.TPC1.UNSK.Defects.ReportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:STW.TPC1.UNSK.Defects"
+        xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms" 
+        mc:Ignorable="d"
+        Title="Результаты контроля" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Сформировать отчёт " Grid.Column="2" Height="25" Margin="10"/>
+            <Grid Grid.Column="1" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Content="Номера партий:"/>
+                <ComboBox Height="25" Width="100"  Grid.Column="1"/>
+            </Grid>
+            <StackPanel Grid.IsSharedSizeScope="True" Margin="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition SharedSizeGroup="first"/>
+                        <ColumnDefinition SharedSizeGroup="second"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="За период c:"/>
+                    <DatePicker Grid.Column="1"/>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition SharedSizeGroup="first"/>
+                        <ColumnDefinition SharedSizeGroup="second"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="по:"/>
+                    <DatePicker Grid.Column="1"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
+        <WindowsFormsHost Grid.Row="1" >
+            <rv:ReportViewer x:Name="reportViewer" />
+        </WindowsFormsHost>
+    </Grid>
+</Window>
