@@ -31,52 +31,63 @@ namespace STW.TPC1.UNSK.Defects
             reportViewer.ShowParameterPrompts = true;
             reportViewer.LocalReport.ReportEmbeddedResource = "STW.TPC1.UNSK.Defects.Reports.ControlResultsReport.rdlc";
             reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1"));
-            
-            reportViewer.LocalReport.DataSources["DataSet1"].Value = new[] 
+
+            reportViewer.LocalReport.DataSources["DataSet1"].Value = new[]
             {
                 new PartyReportRecord()
                 {
-                    Date = DateTime.Parse("14.05.2018"),
+                    Date = DateTime.Parse("15.05.2018"),
+                    Shift = 'Б',
                     WorkArea = "ТО 1",
                     Defectoscope ="МДТ 6",
-                    TypeSize = "219 х 8",
-                    Melt ="2448",
-                    ControlledQuantity = 154,
-                    UsefulQuantity = 126,
-                    WasteQuantity = 28
+                    TypeSize = "219,08 х 8,02",
+                    Melt ="2468",
+                    ControlledQuantity = 168,
+                    UsefulQuantity = 164,
+                    WasteQuantity = 4,
+                    ExternalDefectCount=1,
+                    InternalDefectCount=4,
+
                 },
                 new PartyReportRecord()
                 {
-                    Date = DateTime.Parse("14.05.2018"),
+                    Date = DateTime.Parse("15.05.2018"),
+                    Shift = 'Б',
                     WorkArea = "ТО 1",
                     Defectoscope ="МДТ 6",
-                    TypeSize = "219 х 8",
+                    TypeSize = "219,08 х 8,02",
                     Melt ="2456",
-                    ControlledQuantity = 124,
-                    UsefulQuantity = 119,
-                    WasteQuantity = 5
+                    ControlledQuantity = 42,
+                    UsefulQuantity = 37,
+                    WasteQuantity = 5,
+                    ExternalDefectCount =5
+                    
                 },
                 new PartyReportRecord()
                 {
-                    Date = DateTime.Parse("14.05.2018"),
+                    Date = DateTime.Parse("15.05.2018"),
+                    Shift = 'Б',
                     WorkArea = "ТО 1",
                     Defectoscope ="Сканер",
-                    TypeSize = "219 х 8",
-                    Melt ="2448",
-                    ControlledQuantity = 154,
-                    UsefulQuantity = 126,
-                    WasteQuantity = 28
+                    TypeSize = "219,08 х 8,02",
+                    Melt ="2468",
+                    ControlledQuantity = 168,
+                    UsefulQuantity = 167,
+                    WasteQuantity = 1,
+                    TooThinCount=1
                 },
                 new PartyReportRecord()
                 {
-                    Date = DateTime.Parse("14.05.2018"),
+                    Date = DateTime.Parse("15.05.2018"),
+                    Shift = 'Б',
                     WorkArea = "ТО 1",
                     Defectoscope ="Сканер",
-                    TypeSize = "219 х 8",
+                    TypeSize = "219,08 х 8,02",
                     Melt ="2456",
-                    ControlledQuantity = 124,
-                    UsefulQuantity = 119,
-                    WasteQuantity = 5
+                    ControlledQuantity = 42,
+                    UsefulQuantity = 41,
+                    WasteQuantity = 1,
+                    ExternalDefectCount=1
                 },
             };
             reportViewer.RefreshReport();
